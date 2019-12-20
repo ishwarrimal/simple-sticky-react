@@ -1,0 +1,1 @@
+Learning to create a simple npm package as a first contribution to OSS
