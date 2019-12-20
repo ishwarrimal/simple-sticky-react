@@ -1,0 +1,23 @@
+{
+  "name": "simple-sticky",
+  "version": "1.0.0",
+  "private": false,
+  "description": "a very simple implementation of sticky with throttle for global event listeners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "simple sticky react",
+    "sticky in react",
+    "react sticky"
+  ],
+  "author": {
+    "name": "theHumbleBeing",
+    "email": "ishwar.rimal@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "react": "^16.12.0"
+  }
+}
