@@ -1,0 +1,14 @@
+.stickyParent {
+    overflow: hidden;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+.sticky + .content {
+    padding-top: 60px;
+    margin-bottom: 40px;
+}

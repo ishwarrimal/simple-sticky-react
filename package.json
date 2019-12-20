@@ -1,9 +1,13 @@
 {
-  "name": "simple-sticky",
+  "name": "simple-sticky-react",
   "version": "1.0.0",
   "private": false,
   "description": "a very simple implementation of sticky with throttle for global event listeners",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ishwarrimal/simple-sticky-react"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
