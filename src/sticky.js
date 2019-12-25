@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createRef } from 'react'
 import './styles.css'
-import { throttle } from 'utils/browserHelper'
 
 let previousHeight = 0
 let totalHeight = 0
