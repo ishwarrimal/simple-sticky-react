@@ -1,14 +1,19 @@
 .stickyParent {
     overflow: hidden;
+    background-color: white;
+    box-shadow: 2px 2px #eee;
 }
 
 .sticky {
     position: fixed;
-    top: 0;
     z-index: 10;
 }
 
 .sticky + .content {
     padding-top: 60px;
     margin-bottom: 40px;
+}
+
+.sticky .hideFromSticky {
+    display: none;
 }

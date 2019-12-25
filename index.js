@@ -1,4 +1,4 @@
-import Sticky from './sticky'
+import Sticky from './src/sticky'
 
 module.exports = {
     Sticky
