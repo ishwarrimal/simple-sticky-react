@@ -1,21 +1,22 @@
 {
   "name": "simple-sticky-react",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": false,
   "babel": {
     "presets": [
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@babel/preset-env"
     ]
   },
   "description": "a very simple implementation of sticky with throttle for global event listeners",
-  "main": "index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ishwarrimal/simple-sticky-react"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish:npm": "rm -rf dist && mkdir dist &&  babel src/ -d dist --copy-files"
+    "package:npm": "rm -rf dist && mkdir dist &&  ./node_modules/.bin/babel src --out-dir dist"
   },
   "keywords": [
     "simple sticky react",
@@ -26,11 +27,15 @@
     "name": "theHumbleBeing",
     "email": "ishwar.rimal@gmail.com"
   },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
-    "@babel/preset-react": "^7.7.4",
-    "react": "^16.12.0"
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4"
   }
 }
