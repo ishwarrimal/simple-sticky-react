@@ -9,6 +9,8 @@ Wrap the component you want to be sticky within `<Sticky>` component.
 
 You can wrap not just one component but also list of components and `<Sticky>` will make the entire components as sticky.
 
+### NOTE : If you want some of your nested components to hide in sticky, you can give a classname `hideFromSticky` to the component. Our sticky will ignore the component with this class
+
 By default your first `<Sticky>` component will be sticked to the top of the screen and your second `<Sticky>` below it and so on.
 
 Currently there are following options/props that you can pass while calling `<Sticky>`  
