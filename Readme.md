@@ -34,3 +34,8 @@ Sometiems we don't want our sticky element to be stacked below the total height 
 
 4. throttleInMS:  
 Since we use a global event listener to swithc between the `fixed` and `relative` property, we would want to limit the event listener to some specific time. Hence we use this property. By defalut it's 200 ms, that is after every 200 ms the event listener on scroll will be fired. You can give your own value based on your requirement.
+
+
+### v1.0.8  
+Problem: While creating new sticky, it was considering the height of the previous stikcy component even if its removed from the dom.
+Fix: Clean up for stikcy once the element is removed from DOM.
