@@ -44,7 +44,10 @@ function Sticky({ children, offsetTop = null, currentTopValue = 0, stackWithPrev
             window.addEventListener('scroll', t)
             previousHeight = stickyRef.current.offsetHeight
             totalHeight += previousHeight
-            return () => window.removeEventListener('scroll', t)
+            return () => {
+                window.removeEventListener('scroll', t)
+                totalHeight -= previousHeight
+            }
         }
     }, [])
     return (
