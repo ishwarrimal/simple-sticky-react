@@ -1,6 +1,6 @@
 {
   "name": "simple-sticky-react",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "private": false,
   "babel": {
     "presets": [
@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package:npm": "rm -rf dist && mkdir dist &&  ./node_modules/.bin/babel src --out-dir dist"
+    "package:npm": "rm -rf dist && mkdir dist &&  ./node_modules/.bin/babel src --out-dir dist && cp src/styles.css dist/"
   },
   "keywords": [
     "simple sticky react",
