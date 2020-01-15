@@ -1,10 +1,9 @@
-import React, { useState, useEffect, createRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import './styles.css'
 
 let totalHeight = 0
+let stickyElements = {}
 let index = 0
-let offsetArray = []
-let heightArray = []
 
 export function throttle(callback, delay, options = {}) {
     let flag = true
@@ -28,28 +27,35 @@ function Sticky({
     stackWithPrevious = true,
     throttleInMS = 50
 }) {
-    const [stickyRef] = useState(createRef())
-    function handleScrollOnPage({ positionTop = 0, offsetTop = null, spaceTop = 0, spaceBottom = 0, index }) {
+    const stickyRef = useRef(null)
+    function handleScrollOnPage({
+        positionTop = null,
+        offsetTop = null,
+        spaceTop = 0,
+        spaceBottom = 0,
+        stackWithPrevious,
+        indexOfSticky
+    }) {
         const comp = stickyRef.current
         const width = comp.offsetWidth
-        if (!offsetArray[index]) {
-            offsetArray.push(
-                offsetTop ||
-                    comp.offsetTop -
-                        spaceTop -
-                        (heightArray.length > 0 ? heightArray.reduce((total = 0, num) => total + num) : 0)
-            )
-            heightArray.push(comp.offsetHeight)
+        if (!stickyElements[indexOfSticky]) {
+            const stickyElem = {}
+            stickyElem.offsetTop = offsetTop || comp.offsetTop - totalHeight
+            stickyElem.positionTop = totalHeight
+            stickyElem.height = comp.offsetHeight
+            stickyElem.totalHeight = comp.offsetHeight + spaceTop + spaceBottom
+            stickyElements[indexOfSticky] = stickyElem
+            totalHeight += comp.offsetHeight + spaceTop + spaceBottom
         }
         let mtset = false
-        if (window.pageYOffset >= offsetArray[index]) {
+        if (window.pageYOffset >= stickyElements[indexOfSticky].offsetTop) {
             comp.classList.add('sticky')
             comp.style.width = `${width}px`
             comp.style.paddingTop = `${spaceTop}px`
-            comp.style.top = `${positionTop + offsetTop}px`
+            comp.style.top = `${stickyElements[indexOfSticky].positionTop}px`
             comp.style.paddingBottom = `${spaceBottom}px`
             if (!mtset) {
-                comp.nextElementSibling.style.marginTop = `${heightArray[index]}px`
+                comp.nextElementSibling.style.marginTop = `${stickyElements[indexOfSticky].height}px`
                 mtset = true
             }
         } else {
@@ -60,30 +66,22 @@ function Sticky({
     }
 
     useEffect(() => {
-        if (stickyRef.current.offsetHeight) {
-            let ind = index
-            let t = throttle(handleScrollOnPage, throttleInMS, {
-                positionTop: currentTopValue
-                    ? currentTopValue
-                    : stackWithPrevious
-                    ? totalHeight
-                    : totalHeight - (heightArray.length > 0 ? heightArray.reduce((total = 0, num) => total + num) : 0),
-                offsetTop: offsetTop,
-                spaceTop: spaceTop,
-                spaceBottom: spaceBottom,
-                index: ind
-            })
-            window.addEventListener('scroll', t)
-            let previousHeight = stickyRef.current.offsetHeight
-            totalHeight += previousHeight
-            index += 1
-            return () => {
-                index = 0
-                window.removeEventListener('scroll', t)
-                offsetArray = []
-                heightArray = []
-                totalHeight -= previousHeight
-            }
+        let indexOfSticky = index
+        let t = throttle(handleScrollOnPage, throttleInMS, {
+            positionTop: currentTopValue,
+            stackWithPrevious,
+            offsetTop: offsetTop,
+            spaceTop: spaceTop,
+            spaceBottom: spaceBottom,
+            indexOfSticky
+        })
+        window.addEventListener('scroll', t)
+        index += 1
+        return () => {
+            window.removeEventListener('scroll', t)
+            let curSticky = stickyElements[indexOfSticky]
+            totalHeight -= curSticky.totalHeight
+            delete stickyElements[indexOfSticky]
         }
     }, [])
     return (
