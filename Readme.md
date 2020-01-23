@@ -4,23 +4,23 @@ We welcome anyone willing to contribute to this project with a new feature or re
 Of course you can use `position: sticky` in your css, but it's not supported in few browsers. 
 Hence we present to you `<Sticky>` component for react which works same as `sticky` but switches between `fixed` and `relative` position on the fly.
 
-We present to you a simple sticky component for your react project. 
-NOTE: We don't use any external library.
-It uses simple `window.onScroll` with `throttle` of `200ms` to not let window event burden your UI.
+We present to you a simple sticky component for your react project.   
+NOTE: We don't use any external library.  
+It uses simple `window.onScroll` with `throttle` of `200ms` to not let window event burden your UI.  
 
 
 Wrap the component you want to be sticky within `<Sticky>` component.
 
 You can wrap not just one component but also list of components and `<Sticky>` will make the entire components as sticky.
 
-### NOTE : If you want some of your nested components to hide in sticky, you can give a classname `hideFromSticky` to the component. Our sticky will ignore the component with this class
+### NOTE : If you want some of your nested components to hide when it becomes sticky, you can give a classname `hideFromSticky` to the component. Our sticky will ignore the component with this class
 
-By default your first `<Sticky>` component will be stuck to the top of the screen and your second `<Sticky>` below it and so on.
+By default your first `<Sticky>` component will stick to the top of the screen and your second `<Sticky>` below it and so on.
 
 ```
 import { Sticky } from 'simple-sticky-react'
 <Sticky>
-list of your compnents
+ <list of your compnents />
 </Sticky>
 ```
 
