@@ -1,3 +1,6 @@
+This is a repo for the npm package of `simple-sticky-react` .   
+We welcome anyone willing to contribute to this project with a new feature or report a but or suggest any changes.
+
 Of course you can use `position: sticky` in your css, but it's not supported in few browsers. 
 Hence we present to you `<Sticky>` component for react which works same as `sticky` but switches between `fixed` and `relative` position on the fly.
 
